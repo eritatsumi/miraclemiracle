@@ -1,0 +1,855 @@
+%\documentclass[review]{elsarticle}
+%\documentclass[preprint,11pt,authoryear]{elsarticle}
+%\documentclass[3p,twocolumn,authoryear]{elsarticle}
+\documentclass[3p,authoryear]{elsarticle}
+%----tatsumi
+\usepackage{lscape}
+\usepackage{listings}
+\usepackage{comment}
+%\usepackage{doublespace}
+\usepackage{amsmath,amssymb}
+%\usepackage{ascmac}
+%\usepackage{bm}
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{longtable}
+\usepackage{mediabb}
+\usepackage{color}
+\usepackage{ulem}
+%\usepackage{setspace}
+%\usepackage{showkeys}
+\newcommand{\ma}[2]{\textcolor{red}{#1 \sout{#2}} }
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\gr}[1]{\textcolor{green}{#1}}
+%\newcommand{\ma}[2]{#1}
+
+\newcommand{\del}{\partial}
+\renewcommand{\d}{{\rm{d}}}
+\newcommand{\II}{I\hspace{-.1 em}I}
+\newcommand{\III}{I\hspace{-.1 em}I\hspace{-.1 em}I}
+
+%--------
+
+\usepackage[dvipdfmx]{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{lineno}
+\modulolinenumbers[5]
+
+\journal{Icarus}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+%\bibliographystyle{elsarticle-num}
+\bibliographystyle{elsarticle-harv}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Cratering efficiency on coarse-grain targets: implications for the dynamical evolution of asteroid 25143 Itokawa}
+%\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
+
+%% Group authors per affiliation:
+\author[affiliation1]{Eri Tatsumi\corref{mycorrespondingauthor} }
+\author[affiliation1,affiliation2]{Seiji Sugita}
+\address[affiliation1]{Department of Earth and Planetary Science, the University of Tokyo, 7-3-1 Hongo, Bunkyo-ku, Tokyo 113-0033 Japan}
+\address[affiliation2]{Research Center for the Early Universe, the University of Tokyo, 7-3-1 Hongo, Bunkyo-ku, Tokyo 113-0033 Japan}
+%\fntext[myfootnote]{Since 1880.}
+
+%% or include affiliations in footnotes:
+\author{}
+\cortext[mycorrespondingauthor]{Corresponding author}
+\ead{eri@eps.s.u-tokyo.ac.jp}
+%\ead[url]{www.elsevier.com}
+
+
+\begin{abstract}
+Remote sensing observations made by the spacecraft Hayabusa provided the first direct evidence of a rubble-pile asteroid: 25143 Itokawa.
+Itokawa was found to have a surface structure very different from other explored asteroids; covered with coarse pebbles and boulders
+ranging at least from cm to meter size. The cumulative size distribution of small circular depressions on Itokawa, most of which may be
+of impact origin, has a significantly shallower slope than that on the Moon; small craters are highly depleted on Itokawa compared to the Moon.
+This defeciency of small circular depressions and other features, such as clustered fragments and pits on boulders, suggest that the boulders on
+Itokawa might behave like armor, preventing crater formation: the ``armoring effect''.
+This might contribute to the low number density of small crater candidates.
+In this study, the cratering efficiency reduction due to coarse-grained targets was investigated based on impact experiments at velocities
+ranging from $\sim 70$ m/s to $\sim 6$ km/s using two vertical gas gun ranges.
+We propose a scaling law extended for cratering on coarse-grained targets (i.e., target grain size $\gtrsim$ projectile size).
+We have found that the crater efficiency reduction is caused by energy dissipation at the collision site where momentum is transferred
+from the impactor to the first-contact target grain, and that the armoring effect can be classified into three regimes: (1) gravity scaled regime,
+(2) reduced size crater regime, or (3) no apparent crater regime, depending on the ratio of the impactor size to the target grain size
+and the ratio of the impactor kinetic energy to the disruption energy of a target grain.
+We found that the shallow slope of the circular depressions on Itokawa cannot be accounted for by this new scaling law, suggesting that obliteration processes, such as regolith convection and migration, play a greater role in the depletion of circular depressions on Itokawa.
+Based on the new extended scaling law, we found that the crater retention age on Itokawa is 10 -- 33 Myr in the main belt, which is in good agreement
+with the cosmic-ray exposure ages for returned samples from Itokawa which may reflect the age of material a few meters beneath the surface.
+These ages strongly suggest that the global resurfacing that reset the 1 -- 10 m deep surface layer may have occurred in the main belt long
+after the possible catastrophic disruption of a rigid parent body of Itokawa suggested by Ar degassing age ($\sim 1.3$ Gyr).
+\end{abstract}
+
+\begin{keyword}
+Cratering\sep Impact process\sep Asteroid surfaces \sep Asteroid Itokawa \sep Asteroids
+\end{keyword}
+
+\end{frontmatter}
+
+%\tableofcontents
+\linenumbers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The Japanese spacecraft Hayabusa conducted remote sensing observations of the near-Earth asteroid 25143 Itokawa in 2005 \citep{fujiwara2006, saito2006}. 
+This was the first spacecraft observation of a rubble-pile asteroid and provided us with a variety of information on surface structures of a rubble-pile asteroid.
+
+``Rubble-pile'' objects, loosely bound and gravity-dominated aggregates with negligible tensile strength \citep[e.g.][]{fujiwara1980}, are now
+widely accepted to be common among small asteroids \citep[e.g.][]{richardson2002}. The bimodal distribution of rotational periods strongly suggests
+that there is a threshold for rotation period, which further suggests that many asteroids $0.15<D_a<10$ km are rubble piles \citep{pravec2002}. More recently, both rock friction calculations suggest that asteroids smaller than 0.15 km in diameter are also loosely combined with little cohesion against
+centrifugal force beyond the spin barrier \citep[e.g.][]{holsapple2007,scheeres2010,rozitis2014}. Moreover, bulk density measurements suggest that the porosities of asteroids smaller than a few tens km are large \citep{britt2002}. 
+Thus, a dominant fraction of asteroids smaller than 10 km may be rubble piles. Because the mass fraction of this size range of asteroids is estimated to be 10--20 \% of the entire main asteroid belt based on the size distribution by SDSS observations \citep{demeo2013}, as much as a tenth of the total mass of the main belt may reside in rubble pile asteroids (assuming a mass of $(3-3.6)\times 10^{21}$ kg for the entire main belt, \citep{krasinsky2002, kuchynka2013}).
+Another characteristic of small asteroids that can be observed by ground-based telescopes is thermal inertia, which allows us to estimate the surface physical conditions, including grain size and inter-grain contact state. Typical km-sized asteroids
+have higher thermal inertia than large asteroids (200 -- 1000 km) by more than one order of magnitude, suggesting that the small asteroids have less regolith and more coarse-grained surface \citep{delbo2009}. For example, the thermal inertia of Itokawa is $\sim 750$ Jm$^2$s$^{0.5}$K$^{-1}$\citep{muller2005}, while that of the Moon is $\sim 40$ Jm$^2$s$^{0.5}$K$^{-1}$\citep{Keihm1984}.
+This observation is consistent with the short collisional lifetimes of small asteroids. 
+Such a short surface age would prevent surface grains from being ground down to fine grains by impact and/or thermal fatigue fragmentation. Also, the low gravity and escape velocities of these small bodies may allow electrostatic forces to cause micro-size dust grains to leave the asteroids rather efficiently \citep{lee1996,hartzell2011,nagao2011}.
+Thus, the surfaces of small asteroids may be dominated by coarse-grained material.
+Moreover, two target asteroids for sample-return missions, Ryugu for Hayabusa2 by the Japanese Aerospace Exploration Agency (JAXA) and Bennu for OSIRIS-REx by the National Aeronautics and Space Administration (NASA), have thermal inertias slightly smaller \citep{hasegawa2008,emery2014, mueller2016} than Itokawa but significantly larger than that of fine regolith, suggesting coarse-grained surfaces.
+
+The asteroid Itokawa may be a good representative of such rubble-pile asteroids with coarse-grained surfaces.
+The surface of Itokawa has two distinct types of terrain, rough terrain, which occupies $\sim 80\%$ of its surface, and smooth terrain \citep{saito2006}.
+Most of the surface is covered with cm to m-sized angular pebbles and boulders. The size range of boulders is rather large compared to Itokawa's small overall size (0.54 km $\times$ 0.29 km $\times$ 0.21 km).
+
+Another type of distinctive geological features on Itokawa are circular depressions, which are formed likely by meteoroidal impacts \citep{hirata2009}.
+The number density of large circular depressions ($\gtrsim 100$ m) is comparable to that of the Moon.
+However, the cumulative size distribution of small circular depressions for Itokawa has a significantly shallower slope than that for the Moon;
+small craters are highly depleted on Itokawa compared to the Moon.
+The reason for the depletion in small depressions could be caused by the combination of production rate reduction and erasure processes.
+Smaller depressions could be erased faster than larger ones. Regolith migration \citep{miyamoto2007, tancredi2015} might deform and obliterate these features.
+Close-up images of Itokawa surface with pixel resolution of $\sim 6$ mm to $\sim70$ cm taken by the Asteroid Multi-band Imaging CAmera (AMICA) provide records of small impact processes other than excavated crater-like features (Figure \ref{amica}). \citet{nakamura2008} found several lines of evidence in these AMICA images for the presence of small meteorite collisions with boulders on the surface of Itokawa. For example, possible boulder fragments (Figure \ref{amica}(a)) with angular and conical shapes and numerous bright spots on some boulders (the arrows in Figures \ref{amica}(b) and (c)) which probably indicate freshly spalled areas by small impacts. These features suggest the presence of meteoroidal collisions without excavating subsurface materials because the disruption energy of surface large boulders is large enough to absorb a large fraction of the impact energy.
+
+Especially on small km-sized asteroids whose surfaces are covered with coarse grains, the condition that the target grain size is comparable to or larger than a projectile size occurs frequently. Such impacts on large grains may cause so-called ``armoring effect'', in which large boulders on the asteroid surface behave as armor. This effect was predicted in previous studies \citep[e.g.,][]{barnouin2005, guettler2012}. Although several experiments under limited conditions were performed, quantitative analyses for the armoring effect under realistic conditions, i.e., cratering involving extensive disruption of target grains, has not been obtained. Thus, there is large uncertainty in cratering scaling on coarse-grained (target-grain size/projectile size $\gtrsim $ unity) surfaces. Due to this uncertainty, an accurate age estimate cannot be made based on crater counting on Itokawa surfaces. Accurate age estimation for rubble-pile asteroids requires an accurate crater scaling law.
+
+The goal of this study is to evaluate the cratering efficiency on coarse-grained targets and to investigate the armoring mechanism. To achieve this goal, first we reviewed previous experimental studies (Section \ref{sec:review}). We then performed impact experiments using coarse-grained targets that simulate rubble-pile asteroids surfaces (Section \ref{sec:experiment}). Subsequently, impact crater dimensions were measured and analyzed based on dimensional analysis. First, we analyzed the experimental data based on the classic $\pi$ scaling derived by \citet{holsapple1993} (Section \ref{sec:classic-pi}). Then, we formulate an extended $\pi$ scaling law to estimate crater size on coarse-grained targets in order to apply it to asteroid surfaces (Section \ref{sec:extension-pi}) and discuss how the armoring mechanism may occur based on laboratory experiments (Section \ref{sec:mechanism}). Furthermore, planetary implications including the crater retention age of Itokawa and its dynamical history, and the mass evolution of the main asteroid belt are discussed (Section \ref{sec:implication}) before conclusions (Section \ref{sec:conclusion}).
+
+\begin{figure*}[tbp]
+	\begin{center}
+	\includegraphics[width=\textwidth]{/Users/eri/Dropbox/2016icarus/Figures/fig1.eps}
+	\caption{Itokawa's collisional imprints. (a) Angular and conical boulder cluster (dashed enclosure) and a white spot (arrow) (ST{\_}2530286817). (b) White spots (arrows) are considered to be relatively fresh areas (ST{\_}2539444467). (c) Magnified image of white spots (ST{\_}2566271576). (d) A crater-like circular depression whose floor is filled with fine particles. \citep{nakamura2008, hirata2009}}
+	\label{amica}
+	\end{center}
+\end{figure*}
+
+%------------------------------------------------------------%
+\section{Previous experiments on coarse-grained targets} \label{sec:review}
+%------------------------------------------------------------%
+Several experiments on coarse-grained targets have been conducted, revealing that the ratio of target grain size to projectile size greatly influences the cratering process \citep{cintala1999, barnouin2005, guettler2012, holsapple2014}. These experiments, however, are not necessarily consistent with each other, especially with respect to velocity dependence. The first series of experiments on this issue was conducted by \citet{cintala1999}. They used 1 -- 3 mm coarse-grained sand as targets and aluminum spheres 4.76 mm in diameter as impactors. In their experiments, the impactors and target grains were comparable in size, although the impactors were larger. Although their primary interest was ejecta velocity, they also found that crater size was the same as crater size on fine-grained sand and that crater shapes with depth/diameter ratios of $\sim 0.23$ are similar to simple craters. More recently, the Hayabusa mission revealed that the asteroid Itokawa possesses a surface condition very different from other explored asteroids \citep[e.g.][]{fujiwara2006, saito2006}, attracting much attention to the cratering processes on coarse-grained targets \citep{barnouin2011, guettler2012, holsapple2014}. \citet{barnouin2011} reported different behaviors between fine-grained targets and coarse-grained targets at low impact velocities $<1.5$ km/s. More systematic experiments at low speeds ($\sim$200 -- 300 m/s) on coarse-grained glass sphere targets with a variety of the projectile/target grain sizes by \citet{guettler2012} revealed that the crater sizes on the coarse-grained targets are controlled by the projectile/target grain size. More specifically, \citet{guettler2012} found that for a given projectile/target grain size, the armoring effect of crater reduction from gravity scaling does not depend on the impact velocity within their velocity range. However, this estimation may be applicable only to low-velocity cratering. Impact experiments by \citet{barnouin2011} suggest that the armoring effect may depend on impact velocity. More recent impact experiments by \citet{holsapple2014} at velocities high enough to fully disrupt a target grain revealed that craters formed under such conditions are as large as predicted by a classical gravity scaling rule (i.e., dry sand cases), suggesting that the armoring effect observed at low velocities may not be very pronounced at high velocities $\sim 5$ km/s.
+
+ In order to understand this situation clearly, we used the ratio $\xi =\frac{1}{2}m_pU^2/m_tQ_D^*$ of the impact energy to the disruption energy of a target grain as well as the size ratio $\psi=D_p/D_t$ of a projectile to target grains and analyzed the relationship between the degree of armoring effect and experimental conditions for previous experiments. We plotted the degree of armoring effect in the $\xi - \psi$ space (Figure \ref{phase}). Figure \ref{phase} clearly shows that the degree of armoring effect changes with both size ratio $\psi$ and energy ratio $\xi$. More specifically, the experimental result of \citet{holsapple2014} shows that the conclusion of \citet{guettler2012} that the armoring effect occurs when $\psi<1$ is not always correct; impact energy might influence the degree of armoring. This suggests that the size ratio $\psi$ is not the only controlling parameter for the armoring conditions and that the energy ratio $\xi$ should be taken into account. The condition in which crater size was reduced is shown in the dashed circle in Figure \ref{phase}. Otherwise, at least under the previous experimental conditions, the crater size was comparable to that predicted by the classic gravity scaling by \citet{holsapple1993}. Below, we evaluate the transition from armoring to classic gravity scaling which may be found between these conditions.
+
+\begin{figure}[htbp]
+\begin{center}
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig2.pdf}
+	\caption{Phase diagram for the armoring effect; which style of cratering occurs is shown as a function of $\psi$ (projectile size/target grain size) and $\xi$ (impact energy/catastrophic disruption energy for one grain) from previous experiments \citep{cintala1999,guettler2012,holsapple2014}. Open symbols indicate gravity-scaled-sized craters \citep{holsapple1993} and filled symbols indicate craters smaller than predicted by gravity scaling. Experimental results that fall within a factor of two (i.e., $+100\%$ and $-50\%$) from the gravity scaling are shown with open symbols and data points below this range are shown with filled symbols.}
+	\label{phase}
+\end{center}
+\end{figure}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \section{Impact experiments} \label{sec:experiment}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Our aim was to understand cratering on rubble-pile asteroids with fragmentation of grains, where the projectiles are comparable to or smaller than target grains in size and the impact energy is larger than the disruption energy of one grain. Previous studies did not compare experimental results with the ratio $\xi$ of impact energy to disruption energy of a target grain, but only took into account the size ratio $\psi$. Here, we add the energy ratio $\xi$ parameter and conduct experiments under various combinations of the energy ratio $\xi$ and the size ratio $\psi$.
+
+We used two vertical guns in the University of Tokyo and Institute of Space and Astronautical Science (ISAS/JAXA), for impact velocities 79 -- 224 m/s and 1 -- 6 km/s, respectively (Figure \ref{gun_range}). We used polycarbonate projectiles 0.76 -- 0.77 g in mass and 10 mm in diameter for the former gun and 0.068 g in mass and 4.7 mm in diameter for the latter gun, respectively.
+The shapes of the projectiles were ``bullet shaped'' with a spherical head and cylindrical tail for the former gun and spheres for the latter gun, respectively.
+
+We used pumice with different mean grain diameters ($\sim$7, 9 and 16 mm), basalt ($\sim$ 10 and 18 mm), sintered glass beads (SGB) ($\sim 12$ mm) and soda glass spheres ($10$ mm) as simulated boulder targets.
+By using weakly-sintered glass beads \citep[e.g.][]{setoh2010} as a target material, we reproduced the conditions of cratering involving disruption at the relatively low impact velocities achievable with our facilities.
+ The material properties of target materials used in this study are summarized in Table \ref{material}, and the grain size distributions are given in Figure \ref{grainsize-CDF}, where all the averages of mean diameters (average of long axis and short axis) are comparable to or greater than the impactor size (i.e., $\psi \gtrsim 1$).
+Because the specific energies for catastrophic disruption of basalt, pumice and sintered glass beads are $\sim 1000$ J/kg, $\sim 2000$ J/kg and $\sim 30$ J/kg \citep{takagi1984,HH1999,setoh2010,patmore2014,flynn2015}, the energies required to disrupt a 1-cm grain are $\sim 9$ J, $\sim 7$ J and $\sim 0.2$ J, respectively.
+A sintered glass bead grain is easily disrupted at impact velocities around 100 m/s.
+The schematic configuration of experiments is illustrated in Figure \ref{schematic-exp}. Impact velocity was measured by a pair of laser detection systems.
+ Note that all the impacts were vertical, and each shot was recorded with high-speed cameras (NAC, Fx-4 and Q1v) at 5000 -- 8000 fps.
+Some of the experiments were performed with quarter-space targets to observe the impact process underneath the target surface. We measured the final rim-to-rim diameter and depth of craters. The cross-section crater profiles of high-velocity cases were obtained with a high-precision laser profiler (Keyence, LJ-V). However, the shapes of the craters were sometimes difficult to determine, especially for low-velocity cases, because the crater sizes become comparable to the size of large target grains. In order to resolve this problem, we colored the pre-impact target surfaces with spray paint to make it obvious which grains had moved upon impact.
+This technique turned out to be very effective and allowed us to discern which portion of the target was excavated (Figure \ref{crater-splay}).
+%
+\begin{figure*}[tbhp]
+	\centering
+	\includegraphics[width=120mm]{/Users/eri/Dropbox/2016icarus/Figures/fig3.eps}
+	\caption{Two vertical gas gun ranges used in this study. (a) The two-stage light gas gun range at ISAS/JAXA with velocity range of $\sim 1\,-\,6$ km/s. (b) The one-stage light gas gun range at the University of Tokyo with velocity range of $\sim $ 79 -- 224 m/s.}
+	\label{gun_range}
+	\centering
+\end{figure*}
+\begin{figure}[htbp]
+	\begin{center}
+	\includegraphics[height=70mm]{/Users/eri/Dropbox/2016icarus/Figures/fig4.eps}
+	\caption{Schematic diagram for our experimental setting at the Univ. of Tokyo. }
+	\label{schematic-exp}
+	\end{center}
+\end{figure}
+\begin{table*}
+	\caption{Mechanical properties of the materials used as targets.}
+	\label{material}
+	\begin{center}
+	\small
+	\begin{tabular}{lcccc}\hline
+	Material & Density (g/cm$^3$) & Comp. Str. (MPa) & $Q_D^*$ (J/kg) & $Q_V^*$ (J/m$^3$) \\ \hline
+	Sintered glass beads & $1.48\pm0.15$ & 0.5 - 5$^{\rm (a)}$ & 34 & $\sim 5.1\times 10^4$\\
+	Pumice & $0.72 \pm 0.1$ & $854\pm 195^{\rm (b)}$& 2380$^{\rm (c)}$& $\sim 1.7\times 10^6$\\
+	Basalt &$2.7\pm0.1$ & $\sim 100-300^{\rm (d)}$&$\sim 800 -1500^{\rm (d)}$& $\sim 2.2\times 10^6$\\
+	 \hline
+	\end{tabular}\\
+	(a) \citet{setoh2010}, (b) \citet{patmore2014}, (c) \citet{flynn2015}, (d) \citet{takagi1984,HH1999}.
+	\end{center}
+\end{table*}
+%
+\begin{table*}[btp]
+	\caption{Sizes and masses of the target grains.}
+	\centering
+	\small
+	\begin{tabular}{lcccc} \hline
+	Target name &Target material & Median mass & Average mass& Average mean diameter\\
+	& &(g) &$m_t$ (g)& $D_t$ (mm) \\ \hline
+	Basalt-m & basalt & 0.83 & $1.06\pm 0.63$ & 9.9\\
+	Basalt-l & basalt & 6.25 & $6.46 \pm 2.50$ & 18.1\\
+	Pumice-s& pumice & 0.094 & $0.106\pm0.045$ & 7.0\\
+	Pumice-m & pumice & 0.220 & $0.232\pm0.077$ &9.1 \\
+	Pumice-l & pumice & 1.20 & $1.29\pm 0.57$ & 15.6\\
+	Sintered-GB & Sintered glass beads & 1.00 & $1.05 \pm 0.45$ & 11.7\\
+	\hline
+	\end{tabular}
+	\centering
+\end{table*}
+\begin{figure*}[tbp]
+	\begin{center}
+	\includegraphics[width=\textwidth]{/Users/eri/Dropbox/2016icarus/Figures/fig5.eps}
+	\caption{Size distributions of target grains. Cumulative frequency distribution of volumes of target grains (left) and masses and mean diameters of target grains (right). Approximately 90 grains were randomly chosen from each target.}
+	\label{grainsize-CDF}
+	\end{center}
+\end{figure*}
+
+
+\begin{figure}[htbp]
+	\begin{center}
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig6.eps}
+	\caption{Example of pumice target with color-sprayed on the surface (a) before and (b) after a cratering experiment.}
+	\label{crater-splay}
+	\end{center}
+\end{figure}
+
+%------------------------------------------------------------%
+ \section{Results and analyses}\label{sec:classic-pi}
+%------------------------------------------------------------%
+The impact conditions and resulting crater dimensions of all the cratering experiments in this study are given in Table \ref{exp-summary}. Figures \ref{crater-low} and \ref{crater-high} show the final craters and the radial profiles of topographies we obtained in the experiments. There is a rather drastic change in crater morphology and size as a function of impact conditions. More specifically, for low impact energies, crater shapes deviate greatly from simple craters; irregular shapes and shallow craters occur (Figures \ref{crater-low} (a), (b), and (c)). This observation may be explained by the excavation flow not developing fully because the low energy is dissipated mostly by the disruption of the first-contact grain. For high energy impacts, the shapes are very similar to simple craters (Figures \ref{crater-low} (d) and \ref{crater-high}). In order to evaluate such changes more quantitatively, we compared our experimental data with classical $\pi$ scalings: gravity scaling and strength scaling \citep[e.g.][]{holsapple1993}.
+ %
+% \begin{landscape}
+ {\footnotesize
+%\begin{table}[htbp]
+%	\begin{center}
+%	\begin{tabular}{ll|cccc}
+	\begin{longtable}[c]{ll|cccc}
+	\caption{Experimental conditions and outcomes. \label{exp-summary}}\\
+	\hline
+	Exp. No. & Target name&Projectile mass& Impact velocity & Crater diameter &Crater depth \\
+	& &$m_p$& $U$ & $D_c$ &  $H$ \\
+	& & (g)& (m/s) & (mm)& (mm) \\ \hline
+	\endfirsthead
+	\multicolumn{6}{l}{{ \it continued from previous page}}\\ \hline
+	Exp. No. & Target name &Projectile mass& Impact velocity & Crater diameter &Crater depth \\
+	& &$m_p$& $U$ & $D_c$ &  $H$ \\
+	& & (g)& (m/s) & (mm)& (mm) \\ \hline
+	\endhead
+	\hline \multicolumn{6}{r}{{ \it Continue on next page}} \\ \hline
+	\endfoot
+	\endlastfoot
+	SGB001& Sintered-GB & 0.77 & 108 & $89\pm 5$ & $20\pm 5$\\
+	SGB002& Sintered-GB & 0.77 & 112 & $89 \pm 6$ & $23\pm5$\\
+	SGB003& Sintered-GB & 0.77 & 127 & $98 \pm 8$ & $26\pm 5$\\
+	SGB004& Sintered-GB & 0.77 & 136 & $97\pm 5$ & $24\pm5$\\
+	SGB005& Sintered-GB & 0.77 & 152 & $95 \pm12$ & $29\pm5$\\
+	SGB006& Sintered-GB & 0.77 & 162 & $103\pm 5$ & $28\pm5$ \\
+	SGB007& Sintered-GB & 0.77 & 170 & $100 \pm 5$ & $25 \pm5$\\
+	SGB008& Sintered-GB & 0.77 & 177 & $112\pm12$ & $33 \pm5$ \\
+	SGB009& Sintered-GB & 0.77 & 194 & $103 \pm 6$ & $33\pm 5$ \\
+	SGB010& Sintered-GB & 0.77 & 224 & $107 \pm 8$ & $28 \pm 5$\\ \hline
+	P001&Pumice-m & 0.76 & 79 & $94 \pm 11$ &$18 \pm 5 $\\
+	P002&Pumice-m & 0.76 & 84 & $100 \pm15$ &$16 \pm 5 $\\
+	P003&Pumice-m & 0.76 & 85 & $105 \pm12 $&$16 \pm 5 $\\
+	P004&Pumice-m & 0.76 & 92 & $106 \pm 11$ & $18 \pm5 $\\
+	P005& Pumice-m & 0.76 & 105 & $95 \pm7$ & $26 \pm 5$ \\
+	P006& Pumice-m & 0.76 & 109 &  $92 \pm 13$ & $24 \pm 5$ \\
+	P007 & Pumice-m & 0.76 & 110 & $101 \pm 14$ & $20 \pm 5$\\
+	P008 & Pumice-m & 0.76 & 130 & $108 \pm 12$ & $17 \pm5$\\
+	P009& Pumice-m &0.76 & 132 & $118 \pm 7 $& $19 \pm 5$\\
+	P010& Pumice-m & 0.76 & 144  & $106 \pm 10$ & $19 \pm 5$\\
+	P011& Pumice-m & 0.76 & 144 & $125 \pm 14$ & $16 \pm 5$\\
+	P012& Pumice-m &0.76 & 155 & $126 \pm 32$ & $18 \pm 5 $\\
+	P013& Pumice-m & 0.76 & 156& $119 \pm 12$ & $21 \pm 5$\\
+	P014& Pumice-m & 0.76 & 169 & $96 \pm 15$ & $19 \pm 5$ \\
+	P015& Pumice-m & 0.76 & 173& $120 \pm 21$ & $20 \pm 5$ \\
+	P016& Pumice-m &0.76 & 175  & $118 \pm 11$ & $18 \pm5$ \\
+	P017 & Pumice-m & 0.76 & 193 & $126\pm15$ & $25\pm5 $ \\
+	P101& Pumice-m & 0.76 & 129 & $102 \pm 5$ & $24\pm 5$\\
+	P102& Pumice-m &0.76 & 140 & $99 \pm 5 $& $25 \pm 5$\\
+	P103& Pumice-m &0.76 & 184 & $114 \pm 5$ & $29 \pm 5$\\
+	P104& Pumice-m &0.76 & 188 & $112 \pm 5$ & $27 \pm 5$\\
+	P105& Pumice-m &0.76 & 201 & $121 \pm 5$ & $27 \pm 5$\\
+	P106& Pumice-m & 0.76 & 203 & $101 \pm 5$ & $25\pm5$\\
+	P107& Pumice-m &0.76 & 219 & $107 \pm 5 $& $40 \pm 5$ \\
+	P201  & Pumice-m & 0.068 & $0.98 \times 10^3$ & $96\pm 11$ & $18\pm 5 $ \\
+	P202 &Pumice-m& 0.068 &$1.57\times 10^3$ & $127\pm14$ & $24\pm5$\\
+	P203 & Pumice-m & 0.068 &$2.06 \times 10^3 $ & $161\pm14 $ & $34\pm 5$\\
+	P204 & Pumice-m & 0.068 & $2.83\times10^3 $ & $193 \pm 17$ & $32 \pm 5$\\
+	P205 & Pumice-m & 0.068 & $3.60 \times 10^3 $ & $215\pm 13 $ & $ 44 \pm 5 $ \\
+	P206*&Pumice-m & 0.068 & $4.33\times 10^3$ & $240\pm10$ & $48\pm5$\\
+	P207 & Pumice-m & 0.068 & $5.05 \times 10^3$ & $280 \pm 13$ & $56\pm 5$ \\
+	P208*& Pumice-m & 0.068 & $5.49\times 10^3$ & $310\pm10$ & $58\pm5$\\
+	P209 & Pumice-m & 0.068 &$6.05\times 10^3$ & $277\pm 16$ & $51\pm 5$ \\
+	\hline
+	P301& Pumice-s & 0.74 & 122 & $126\pm6$ & $17\pm5$\\
+	P302& Pumice-s & 0.74 & 132 & $139\pm7$ & $16\pm5$\\
+	P303& Pumice-s & 0.74 & 144 & $118\pm5$ & $17\pm5$\\
+	P304& Pumice-s & 0.74 & 152 & $124\pm5$ & $19\pm5$ \\
+	P305& Pumice-s & 0.74 & 163 & $121\pm5$ & $23\pm5$\\
+	P306& Pumice-s & 0.74 & 165 & $131\pm5$ &  $19\pm5$\\
+	P307& Pumice-s & 0.74 & 184 & $118\pm16$ & $22\pm5$\\
+	P308& Pumice-s & 0.74 & 186 & $131\pm8$ & $18\pm5$\\
+	P401&Pumice-s & 0.068 & $0.99\times 10^3$ & $99 \pm10$ & $17\pm5$\\
+	P402& Pumice-s&0.068 & $1.70\times 10^3 $&$147\pm14$ & $32\pm 5$\\
+	P403& Pumice-s&0.068 & $3.32\times 10^3$& $200\pm28$ & $42\pm5$\\
+	P404& Pumice-s & 0.068 & $4.59\times 10^3$&$250\pm19$ & $49\pm 5$\\
+	P405& Pumice-s & 0.068 & $5.92\times 10^3$ & $276\pm11$ & $64\pm5$\\
+	\hline
+	P501& Pumice-l & 0.74 & 183 & $92\pm 12$ &$23 \pm 5$\\
+	P502& Pumice-l & 0.74 & 69 & $32\pm 7$ & $8\pm5$\\
+	P503& Pumice-l & 0.74 & 115 & $55\pm 5$ & $14\pm 5$\\
+	P504& Pumice-l & 0.74 & 145 & $60\pm20$ & $15\pm5$\\
+	P505& Pumice-l & 0.74 & 160 & $78\pm12$ & $20\pm5$\\
+	P601*&Pumice-l& 0.068 & $0.96\times 10^3$ &$110\pm10$& $20\pm5$\\
+	P602&Pumice-l&0.068 & $1.78\times 10^3$ & $130\pm18$ & $22\pm5$\\
+	P603&Pumice-l & 0.068 & $3.15\times 10^3$ & $163\pm 16$ &$35\pm5$\\
+	P604& Pumice-l & 0.068 & $4.43\times 10^3$ & $206\pm 23$ & $44\pm5$\\
+	P605*& Pumice-l & 0.068 & $5.34\times 10^3$ & $220\pm 10$ & $53\pm5$\\
+	P606& Pumice-l & 0.068 & $5.95\times 10^3$ & $275\pm19$ & $66\pm5$\\
+	\hline
+	B001*&Basalt-m& 0.068 & $0.88\times 10^3$ & $108\pm8$ & $12.5\pm5$\\
+	B002*&Basalt-m & 0.068 & $2.53\times 10^3$ & $135\pm 5$ & $38\pm5$\\
+	B003*&Basalt-m & 0.068 & $4.30\times 10^3$ & $240\pm10 $&$53\pm5$\\
+	B004*&Basalt-m & 0.068 & $5.91\times 10^3$ & $205\pm 5$ & $48\pm5$\\
+	B005&Basalt-m & 0.068 &$6.10\times 10^3$ & $238\pm 8 $& $43\pm5$\\
+	B101*&Basalt-l & 0.068 & $4.21\times 10^3$ & $190\pm10 $& $43\pm5$\\
+	B102*&Basalt-l & 0.068 & $5.40\times 10^3$ & $220\pm10$ & $55\pm5$\\
+	\hline
+	\multicolumn{6}{l}{ *Quarter-space experiments.}
+%	\end{tabular}
+	\end{longtable}
+%	\end{center}
+%	\end{table}
+}
+%\end{landscape}
+%
+%
+\begin{figure*}[phtb]
+	\begin{center}
+	\includegraphics[width=100mm]{/Users/eri/Dropbox/2016icarus/Figures/fig11.eps}
+	\caption{Crater profiles for low energy experiments. Target grains are pumice blocks with the diameters of $\sim16$ mm ((a) and (b)) and $\sim 9$ mm ((c) and (d)). (a) P502, $m_p=0.74$g, $U=69$m/s, $\xi=0.6$, (b) P501, $m_p=0.74$g, $U=183$m/s, $\xi=2.7$, (c) P301, $m_p=0.74$g, $U=122$m/s, $\xi=25$, (d) P302, $m_p=0.74$g, $U=186$m/s, $\xi=57$. Spray paint was applied in the central regions of the targets before impact experiments for (a) and (b). Note that the resulting impact craters are very shallow and rather difficult to discern without spray paint. Scale bars indicate 10 cm.}
+	\label{crater-low}
+	\end{center}
+\end{figure*}
+
+\begin{figure*}[phbt]
+	\begin{center}
+	\includegraphics[width=100mm]{/Users/eri/Dropbox/2016icarus/Figures/fig12.eps}
+	\caption{Craters formed in high energy experiments and their profiles. Target grains are pumice blocks $\sim 9$ mm in diameter. (a) P203, $m_p=0.068$ g, $U=2.06$ km/s, $\xi\sim 280$, (b) P205, $m_p=0.068$ g, $U=3.60$ km/s, $\xi\sim 840$, (c) P207, $m_p=0.068$ g, $U=5.05$ km/s, $\xi\sim 1700$. Note that they exhibit similar shapes to simple craters on sand targets, showing dramatic difference in crater depth in comparison with Figure \ref{crater-low} (a), (b), and (c).}
+	\label{crater-high}
+	\end{center}
+\end{figure*}
+
+
+ %%%%%%%%%%%%%
+ \subsection{Crater size measurements and comparison with the classic $\pi$ scaling} \label{sec: classic pi}
+ %%%%%%%%%%%%%
+ %gravity scalingのはなし
+The crater sizes are plotted in $\pi_2$--$\pi_V$ space \citep[e.g.][]{holsapple1993} in Figures \ref{pi2-pebble} and \ref{pi2-gb} for targets with angular shapes, such as basalt, pumice and sintered glass beads, and those with smooth shapes, such as glass spheres, respectively.
+Here, the gravity-scaled size $\pi_2=ag/ U^2$ and the dimensionless crater volume $\pi_V=\rho_t V_c/m_p$.
+The derivation of the $\pi$ parameters used this study is given in \ref{sec:piscaling}.
+Because the $\pi$ parameters are based on transient crater size not final crater size after post-impact modification processes, we used the proportional relationship between the transient crater and the final crater size for simple craters: $D_c=1.18D_\text{tr}$ \citep{chapman1986,melosh1989}.
+
+Cratering on fine-grain targets \citep{schmidt1980,mizutani1983,cintala1999} follows the gravity scaling for dry sand (solid black line in Figure \ref{pi2-pebble} and \ref{pi2-gb}).
+For targets with relatively large (1--3 mm) grain targets used by \citet{cintala1999} still follows gravity scaling for dry sand, although these have much larger grains than the previous fine sand targets used by \citet{schmidt1980} and \citet{mizutani1983}.
+If the mechanism of cratering on coarse-grained targets was the same as the well-studied dry sand cratering, the results should follow the line for the dry-sand gravity scaling, but many of the craters formed in our experiments has sizes smaller than the sand gravity scaling line for sand by \citet{schmidt1987} in Figure \ref{pi2-pebble}.
+It is noted that the crater sizes for high impact energy or high impact velocity fall almost on the gravity scaling rule for dry sand.
+This result agrees with coarse-grain experiments at high velocities $\sim 5$ km/s by \citet{holsapple2014}.
+In contrast, at lower impact velocities, our experimental data indicate that cratering efficiency is significantly reduced.
+This might be caused by energy dissipation when the impactor hit and disrupted a target grain on the uppermost surface; material strength may play an important role in cratering under such conditions.
+Thus, the classic gravity scaling may overestimate crater size for coarse-grained targets.
+
+The same trend was observed in the smooth spherical grain targets group in Figure \ref{pi2-gb}. When the target grains were smaller than 1 mm, their crater sizes were almost the same as the fine grain targets, which were several times larger than crater sizes on sand targets due to the low frictions. However, cratering on 10 mm glass sphere targets in our study showed much larger craters compared with that on glass sphere targets with 10 mm and 30 mm in diameter by \citet{guettler2012}.
+
+Thus, simple application of gravity scaling cannot account for crater size with coarse grains; material strength must play an important role in cratering. If cratering on coarse grains is dominated by target grain strength, the non-dimensional crater volume $\pi_V=\rho_t V_c/m_p$ should be controlled by $\pi_3=\bar{Y}/ \rho_t U^2$, which is the target deformation energy $\bar{Y}/\rho_t$ for unit mass scaled by impact energy $U^2$ for unit mass. In the material strength dominated range, log $\pi_V$ should follow a straight line in $\pi_3$--$\pi_V$ space. Because the effective strength of the bulk target as a granular material is a combination of many factors, we cannot readily estimate or measure the effective strength $\bar{Y}$, which corresponds mainly to the bulk compression and tensile strength.
+Instead, here we attempt to derive a strength scaling with the effective strength for composed target grains, because if target grains are much larger than impactor size and the impact energy is very small, the final crater size would be close to that of a crater on a hard monolithic body ($\bar{Y}=18$ MPa) (Figure \ref{pi3-scaling}). This might be a lower limit of crater size.
+Most of our results are apparently very different from the strength scaling of monolithic rock. However, large grain size and small impact energy conditions, such as large pumice grains and large glass spheres, approach the strength scaling. Note that if we assume weaker effective strength, the results would shift toward smaller $\pi_3$, but the slopes would not change. We still could not explain the steep slopes of large grain targets by changing the effective strength.
+
+These results and analyses suggest that the impact processes for high impact velocities ($> 5$ km/s) may follow sand gravity scaling because when the impact energy is sufficiently large, energy dissipation by disrupted fragments is negligible compared with the energy to excavate the target. In contrast, impact processes at low velocities do not follow either the gravity or strength scalings of dry sand in the classical $\pi$ scaling framework. Compared to gravity scaling, the cratering efficiency is reduced to less than 0.1 times the gravity scaling of dry sand. This indicates that classic $\pi$ scaling does not account for cratering on coarse-grained surface very well. Thus, estimation of crater retention ages on sub-km asteroids with coarse-grained surfaces would require a new scaling rule for extrapolating the laboratory-scale results to real asteroid scales.
+%
+\begin{figure}[htbp]
+	\begin{center}
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig7.pdf}
+	\caption{The classical $\pi$ scaling plot with $\pi_2\pi_4^{-1/3}$ and $\pi_V$ for various grain-sized targets with angular shapes including results by \citet{schmidt1980,mizutani1983,cintala1999}, compared with the empirical scaling lines for dry sand (solid), 200\% of dry sand (gray), 50\% of dry sand (dashed), and 10 \% of dry sand (dash-dotted) \citep{schmidt1987}. If the mechanism of cratering on coarse-grained targets was the same as the well-understood dry sand cratering, the results should follow the solid line, but the coarse-grained targets show smaller craters at low velocity (large gravity-scaled size $\pi_2\pi_4^{-1/3}$).}
+	\label{pi2-pebble}
+	\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+	\begin{center}
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig8.pdf}
+	\caption{The classical $\pi$ scaling plot with $\pi_2\pi_4^{-1/3}$ and $\pi_V$ for various grain-sized targets with smooth shapes including results by \citet{schmidt1980,yamamoto2006,guettler2012}, compared with the empirical scaling lines for dry sand (solid), 200\% of dry sand (gray), 50\% of dry sand (dashed), and 10 \% of dry sand (dash-dotted) \citep{schmidt1987}. The results for large grain targets do not follow the scaling line.}
+	\label{pi2-gb}
+	\end{center}
+\end{figure}
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig9.pdf}
+	\caption{The classic $\pi$ scaling plot with $\pi_3$ and $\pi_V$ assuming the effective strength of $\bar{Y}=18$ MPa, the strength of rigid rocks. The results from this study and previous experiments \citep{schmidt1980,mizutani1983,cintala1999,yamamoto2006,guettler2012,holsapple2014} are compared with the results for hard rock (solid) and cohesive sand (dotted) \citep{schmidt1987}. In most cases, the crater sizes are much larger than predicted by the strength scaling on hard rock. However, when a grain size is much larger than its impactor size, the crater size is comparable to the strength scaling on hard rock (solid line).}
+	\label{pi3-scaling}
+	\centering
+\end{figure}
+
+%------------------------------------------------------------%
+\subsection{Quarter-space experiments}\label{sec:observation}
+%------------------------------------------------------------%
+
+The above experimental results suggest that the classic $\pi$ scalings (gravity or strength scaling) are not capable of accurately describing cratering on coarse-grained targets with the armoring effect. This suggests that accurate reproduction of crater size on coarse-grained targets would require a new scaling law based on more in-depth of the cratering processes and targets.
+Thus, to obtain hints about the armoring processes, we conducted quarter-space experiments to observe the cratering processes underneath the target plane in detail.
+Quarter-space experiments have proven very effective for observing physical processes in impact cavities immediately after high-speed collision under a variety of conditions \citep[e.g.][]{pietukowski1980,schultz2015}. Figure \ref{snapshots} shows time-series images of a polycarbonate projectile impacting a pumice target at $\sim 4.3$ km/s (P206).
+Note that a pre-impact image was subtracted from each image in order to visualize moved grains. Upon contact between the impactor and a target grain at high velocity, the high shock pressure due to solid-to-solid collision causes a flash of light \citep[e.g.][]{sugita1998}. As the shock wave propagates, the very fast ejecta from the first-contact point emerge. We noted that the neighboring grains did not move much at the first moment. The shock wave in a coarse-grained target is far slower than that within the rigid targets that usually have shock wave velocities in the order of km/s. Because fragments in the very fast ejecta are fully fractured, they are not large enough to be measured. We could see that the fragmentation of target grains occurred in the very vicinity of the impact site, agreeing with the simulation results by \citet{barnouin2002}.
+
+After the fracturing stage, the momentum transfer triggers subsequent excavation flow.
+The unfractured grains move along the excavation flow in a similar fashion to the flow of the gravity-dominated simple crater. However, the excavation flow speed was much slower than the excavation flow in fine-grained sand targets, resulting in a much smaller final crater size. The excavation stage appears virtually uninfluenced by the material strength of constituent grains but might be controlled by friction between grains as dry sand. This is probably because target grains were not fractured in the flow field, so the material strength of individual grains does not play an important role here. 
+
+These observations suggest that the material strength of constituent grains may influence only the compression and fracturing stages of cratering. However, the very first stage of cratering, where momentum is transferred from the impactor to the first-contact grain, is influenced directly by the mechanical strength of target grains.
+
+\begin{figure*}[phtb]
+	\centering
+	\includegraphics[width=120mm]{/Users/eri/Dropbox/2016icarus/Figures/fig10.eps}
+	\caption{Background-subtracted time-series of a polycarbonate ($a=2.38$ mm) impact on a pumice target with $\sim 9$ mm in mean diameter at $\sim 4.3$ km/s (P206). These are background-subtracted images, so grains that have not moved from the pre-impact conditions are not seen. White dotted line indicates the surface of the pre-impact target and colored dotted lines depict shock fronts moving outward. Different colors indicate different moments. At the very early stage, target grains are fractured but not excavated ($< 1$ $\mu$s). The last image shows the excavated area at the moment and the final crater area.}
+	\label{snapshots}
+	\centering
+\end{figure*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------%
+\subsection{Extension of the $\pi$ scaling} \label{sec:extension-pi}
+%------------------------------------------------------------%
+The above results in this study and previous experimental studies (Figure \ref{phase}) strongly suggest that when the impact energy is not sufficiently large the crater volume on a coarse-grained target would be influenced noticeably by target disruption energy $Q_D^*$ for unit mass \citep[e.g.][]{fujiwara1980b, benz1999}, target material density $\delta_t$ and the target grain radius $r_t$.
+Thus, we attempt to derive a new $\pi$ scaling, starting from the following equation instead of eq. \eqref{pi-start-eq}:
+\begin{equation}
+	V_c=f^*[a,\,U,\,\rho_p,\, \rho_t,\,Y,\, g,\, Q_D^*, \,\delta_t,\, r_t]. \label{pinew-start-eq}
+\end{equation}
+Note that $\rho_t=\phi \delta_t$, where $\phi$ is the bulk porosity of target.
+Then, the other three dimensionless parameters in addition to the classic $\pi$ parameters are automatically derived by dimensional analysis:
+\begin{align}
+	\pi_5&=\frac{Q_D^*}{U^2},\\
+	\pi_6&=\frac{r_t}{a}=\frac{D_t}{D_p},\\
+	\pi_7&=\frac{\delta_t}{\rho_p}.
+\end{align}
+Furthermore, the ratio $\xi$ of impact energy to the disruption energy of a target grain and the size ratio $\psi$ of projectile to target grains are given as combinations of these $\pi$ parameters:
+\begin{align}
+	\xi&=\frac{1}{2}\pi_5^{-1}\pi_6^{-3}\pi_7^{-1},\\
+	\psi&=\pi_6^{-1}.
+\end{align}
+Because the dimensional analysis indicates that the phenomenon can be parameterized by those seven parameters if the phenomenon is controlled by the physical properties in eq. \eqref{pinew-start-eq}, it is possible that the grain disruption energy ratio $\xi$ and the projectile target grain size ratio $\psi$ are the main controlling parameters for cratering processes on coarse-grained targets.
+
+The observations of the quarter-space experiments in Sec.\ref{sec:observation} suggest that the fracturing stage and the excavation stage should be considered separately.
+More specifically, because the flow in the excavation stage is similar to that for simple-crater formation, modification of the energy and momentum terms in the point source for the $\pi$ scaling formulation may account for the difference in cratering between coarse-target cratering and cohesionless-sand cratering.
+As suggested by \citet{guettler2012}, the final crater diameter might be influenced by the mass ratio of the impactor to the target grain through the momentum conservation law during impact.
+Note that kinetic energy is not necessarily conserved during impact because the initial impact energy can be lost through various dissipation processes.
+Assuming that the first-contacted target grain fragments moves together in as a group even after being fractured, the velocity $U^*$ of the target grain and the impactor after the collision would be
+\begin{align}
+	U^*&=\frac{(1+\epsilon)}{1+m_t/m_p}U=\frac{(1+\epsilon)U}{1+\pi_6^3\pi_7}=\Pi U,\\
+	&{\rm where}\quad \Pi=\frac{m_p}{m_p+m_t}=\frac{1+\epsilon}{1+\pi_6^3\pi_7},\notag
+\end{align}
+where $\epsilon$ is the coefficient of restitution.
+When the impacted target grain and the impactor move together after the collision, the coefficient of restitution is 0 (i.e., a perfectly inelastic collision).
+We can assume that $\epsilon \sim 0$ because the first contact grain would experience highly inelastic deformation upon impact.
+A similar dimensional analysis leads to the extended $\pi$ scaling for coarse-grained target expressed as \eqref{comp-new-pi}:
+\begin{align}
+	\pi_V^*&=\frac{\rho_t V_c}{(m_p+m_t)}=K_1\left[\pi^*_2\pi_4^{-1/3}+K_2\xi^{-(2+\mu_2)/2}+K_3\pi_3^{*(2+\mu_3)/2} \right]^{-3\mu_1/(2+\mu_1)}, \label{comp-new-pi}\\
+	%\mathcal{F}^*[C^*(\Pi),\pi_2^*(\Pi),\pi_3^*(\Pi),\xi(\pi_5,\pi_6,\pi_7),\pi_4], \notag\\
+	\intertext{where,}
+	\pi_2^*&=\frac{a^*g}{U^{*2}}=\Pi^{-7/3}\pi_2, \notag\\
+	 \pi_3^*&=\frac{\bar{Y}}{\rho_tU^{*2}}=\Pi^{-2}\pi_3, \notag\\
+	 \xi&=\frac{m_pU^2/2}{m_tQ_D^*}=\pi_5^{-1}\pi_6^{-3}\pi_7^{-1}/2 \notag\\
+	 \pi_4&=\frac{\rho_t}{\rho_p}.\notag
+\end{align}
+Note that the $\pi_V^*,\,\pi_2^*$ and $\pi_3^*$ have the same forms as eqs.\eqref{piV}--\eqref{pi3}, but here we use effective size $a^*$ and effective velocity $U^*$. Besides the gravity scaling term and the strength scaling term, eqs.\eqref{comp-new-pi} contain another strength term that depends on $\xi$. Both the second and the third terms indicate the influence of strength, but they reflect different types of strength. More specifically, the second one indicates the material disruption strength of constituent grains and the third one indicates the bulk strength.
+
+Using these newly derived non-dimensional parameters, we obtain a relationship between crater efficiency and dimensionless parameters modified for coarse grain disruption in $\pi_2^*-\pi_V^*$, $\pi_3^*-\pi_V^*$ and $\xi - \pi_V^*$ spaces (Figures \ref{newpi2}--\ref{xi_vs_newpiV}). We compared crater efficiency $\pi_V^*$ between the experimental data and our new scaling law as a function of the ratio of impact energy to gravity potential (Figure \ref{newpi2}), impact energy to bulk break-up energy(Figure \ref{newpi3}), and the impact energy to disruption energy of a target grain (Figure \ref{xi_vs_newpiV}). We can assess which scaling law expresses the experimental data better based on these comparisons.
+
+Figure \ref{newpi2} compares the new gravity scaling laws and our experimental data. Figure \ref{newpi2}(a) shows the results for targets with angular-shaped grains, and Figure \ref{newpi2}(b) shows targets with smooth spherical grains. Both results indicate a non-dimensional crater volume $\pi_V^*$ at high velocities (i.e., small $\pi_2^*$) that fits well with the new gravity scaling. Our data for the large crater efficiency $\pi_V^*> 500$ for angular-grain targets and $\pi_V^*>10$ for spherical-grain targets are mostly distributed rather tightly around the gravity scalings of dry sand (i.e., 100\%) and glass beads (i.e., 200\%), respectively, within a factor of 2. However, the crater efficiency data smaller than the above $\pi_V^*$ values do not follow the gravity scaling trend (i.e., slope of $\sim -0.5$).
+
+In contrast, Figure \ref{xi_vs_newpiV} shows that those at low velocities (i.e., large $\pi_2^*$) are expressed well with the fracturing strength scaling term with $\xi$ eq.\eqref{comp-new-pi}. It should also be noted that the sintered glass beads targets have angular shapes but follow the gravity scaling for smooth spherical grains more closely in Figure \ref{newpi2}. This is possibly because these targets behave as smooth glass beads when weakly bonded bead conglomerate grains are completely fractured to release individual smooth glass beads. With the new scaling laws, most of the data for coarse grained targets can be fitted with errors less than a factor of two (Figure \ref{check-new-pi}), which is much better than the classic scaling laws in Sec. \ref{sec: classic pi} (Figures \ref{pi2-pebble}-\ref{pi3-scaling}).
+
+Here, it is noted that -- at least under our experimental conditions -- the crater size is found to be expressed with only two terms in eq.\eqref{comp-new-pi}; the new gravity scaling term with $\pi_2^*$ and the new disruption strength scaling term with $\xi$, although the fracturing strength $\pi_3^*$ should have the potential to account for another experimental trend, such as cratering on individual grains for less energetic impactors. In other words, the intrinsic material strength of individual grains does not have much influence when $\xi>1$. When the impact energy is too small, i.e., $\xi<1$, only one or a few target grains are fractured or one target grain is cratered \citep{guettler2012}. In such cases, the crater size would follow the scaling by the intrinsic material strength of individual grains (e.g., basalt and soda glass in this study). However, when the energy ratio $\xi$ is larger than unity, the experimental results can be expressed for two different regimes. Finally, we fit our experimental data with the combination of the new gravity term $\pi_2^*$ and the new disruption strength term with $\xi$.
+\begin{align}
+	\pi_V^*&=K_1\left[\pi_2^{*}\pi_4^{-1/3}+K_2\xi^{-(2+\mu_2)/2}\right]^{-3\mu_1/(2+\mu_1)}. \label{new-pi}
+\end{align}
+where $K_1=0.24 $, $\mu_1=0.41$ and $K_2=0.01$, $\mu_2=1.23$ for angular-shaped grain targets, and $K_1=0.6 $, $\mu_1=0.41$ and $K_2\sim 0$ for smooth spherical grain targets.
+The ratio of the two terms changes as a function of $\pi_2^*$ and $\xi$. More specifically, the new gravity scaling is applicable when the energy ratio $\xi >>1$;
+\begin{align}
+	\pi_V^*&=K_1\pi_2^{*-3\mu_1/(2+\mu_1)}. \label{newgravity}
+\end{align}
+It is noted that as $m_p(\gg m_t)$ increases the above eq.\eqref{newgravity} approaches the classic gravity $\pi$ scaling discussed in \ref{sec:piscaling}.
+
+The applicability of our new crater scaling is summarized in Figure \ref{psi-xi}, in which the applicable ranges of conditions for this new scaling (eq.\eqref{new-pi}) are shown. Note that our scaling law cannot apply for $\xi<1$ and $\psi<1$ where craters are much smaller than predicted by the new scaling law; as the energy is smaller than the disruption energy of one target grain, the crater size would follow the classic strength scaling. The way the armoring effect works differs greatly depending on the size ratio $\psi$ and disruption energy ratio $\xi$. Based on which scaling law works, we can classify the $\xi$--$\psi$ space into three regimes. (1) No armoring effect (the classic gravity regime): $\psi>1$ or $\xi$ is sufficiently large, (2) armoring regime I, where the new crater scaling law can be applied to predict reduced size craters: $\psi<1$ and $\xi \gtrsim 1$, (3) armoring regime {\II}, where crater size is smaller than our scaling law predicts: $\psi<1$ and $\xi<1$. Such conditions of impacts may leave no apparent topographic craters. Within armoring regime \II, there might be a transition from one grain disruption to the classic strength regime, in which a small ``intra-grain'' crater is formed. Although such processes may be interesting, detailed characterization is beyond the scope of this study.
+
+\begin{figure*}[tbp]
+	\centering
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig13.pdf}
+	\caption{The new scaling law in the $\pi_2^*- \pi_V^*$ space, compiling our data with the previous data by \citet{schmidt1980, mizutani1983, cintala1999, yamamoto2006, guettler2012, holsapple2014}. The solid black lines indicate classic gravity scaling law for dry sand. Gray line, dotted line, and dashed line indicate 200\%, 50\%, and 10\% of sand case, respectively. Different shapes of grains are compared: (a) Target with angular grains and (b) smooth spherical grains.}
+	\label{newpi2}
+	\centering
+\end{figure*}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig14.pdf}
+	\caption{The new scaling law in the $\pi_3^*- \pi_V^*$ space, compiling our data with the previous data by \citet{schmidt1980, mizutani1983, cintala1999, yamamoto2006, guettler2012, holsapple2014}. We assumed that the effective strength of $\bar{Y}=18$ MPa, which is similar to hard rocks. The experimental results are compared with the results for hard rock (solid) and cohesive sand (dotted) \citep{schmidt1987}.}
+	\label{newpi3}
+	\centering
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig15.eps}
+	\caption{Experimental results in $\xi$-$\pi_V^*$ space, compiling our data with the previous data by \citet{schmidt1980, mizutani1983, cintala1999, yamamoto2006, guettler2012, holsapple2014}. When the energy ratio $\xi$ is small but greater than unity, the crater size follows the new scaling law. When impact energy is large enough, the new scaling law switches from disruption scaling to the new gravity scaling. The new scaling lines are shown by solid lines and dash-dotted lines are 50\% and 200\% of each new scaling value. (a) Target with angular-shaped grains: the data cluster around two lines: one is pumice and basalt block targets (black solid) and the other is sintered glass beads targets (gray dashed) with a low energy ratio. (b) Target with smooth spherical grains: the data are clustered around one line (black solid) with a low energy ratio. When the energy ratio $\xi<1$, only few grains were shattered or a crater hole was made on a grain \citep{guettler2012}.}
+	\label{xi_vs_newpiV}
+	\centering
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig16.pdf}
+	\caption{Comparison between Experimental results and predicted $\pi_V^*$. Experimental data in this study and those by \citet{schmidt1980, mizutani1983, cintala1999, yamamoto2006, guettler2012, holsapple2014} are compared. If the new scaling predicts the experimental data accurately, symbols would cluster along the 45$^\circ$ line (dashed line). Both our results and previous results follow mostly within a factor of 2, although there are some data points slightly outside the factor of 2. The region for a factor of 2 is shown with gray hatching between the ratio of experimental values to predicted values from 0.5 and 2. (a) Target with angular-shaped grains and (b) target with smooth spherical grains. When the non-dimensional volume $\pi_V^*<10$ (below the vertical line), symbols are scattered and do not follow the central 45$^\circ$ lines.}
+	\label{check-new-pi}
+	\centering
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=80mm]{/Users/eri/Dropbox/2016icarus/Figures/fig17_new.pdf}
+	\caption{Phase diagram for the armoring effect. The conditions of experiments and the degree of armoring effect are shown. Filled symbols indicate a substantial reduction in cratering efficiency following the new scaling (i.e., eq.\eqref{new-pi}). Open symbols indicate the cratering efficiency following the classical gravity scaling. Small symbols are crater size smaller than predicted by our scaling. The armoring effect by target grain disruption was observed in the magenta region. Our crater size scaling is not applicable for $\xi<1$ and $\psi<1$ (blue hatching). In this range, a crater is formed on one target grain following the classic strength scaling or the first contacted grain is simply disrupted, leaving no apparent crater.}
+	\label{psi-xi}
+	\centering
+\end{figure}
+
+%------------------------------------------------------------%
+\subsection{Effect of neighbor grain fragmentation}\label{sec:mechanism}
+%------------------------------------------------------------%
+Because shockwaves travel at velocities much higher than subsequent excavation flow, in the initial shock the fragmentation due to a collision between a projectile and target grains would complete before substantial excavation motion takes place. Thus, even if the impact energy is the same, the cratering and cratering efficiency is influenced by such momentum/energy transfer from the projectile to the target grains and can be interpreted well when the degree of fragmentation of target grains is taken into account.
+
+When the target grain size is large and the impact energy is small, the dominant fraction of impact energy given to the first-contact grain will be carried by the shockwave producing high-speed fragments from the first contact grain. This shockwave will be reflected efficiently on the surface of the grain and only a small portion of the compression wave will transfer to the neighboring grains through contact points, resulting in a strong compression wave not traveling farther. Thus, the first-contact grain is disrupted but neighboring grains are not disrupted at low impact energies. In this case, the impact energy is largely consumed by the fragmentation and fragment ejection process of the first-contact grain. The momentum cannot be transferred to the neighboring grains because only small surface areas of contact points exist (armoring regime I). When the impact energy becomes larger, the impact energy will disrupt surrounding grains as well, but the fragments from sub-surface grains will not escape to space because the fragments and grains in the upper layer behave as a lid. Thus, more energy is partitioned into the kinetic energy of excavation flow of the target grains than into ejecta from the first-contact grain (armoring regime I). When the impact energy is sufficiently large, the amount of high-speed fragments from the first-contact grain increases. By colliding the surrounding grains, these fragments transfer the momentum and kinetic energy efficiently to the surrounding grains. As a result, full excavation flow will develop, and a crater as large as a crater on sand (i.e., gravity regime) will form.
+
+There are also a series of experiments yielding results supporting that the energy transfer from the first contact grain to the surrounding grains is greatly influenced by the geometry of target grains. \citet{durda2011} conducted impact experiments to both a block resting on sand and a block partially buried in sand. Even when the impact energy was comparable to the catastrophic disruption of the target block, the damage to the buried block was much less than to the block resting on a sand surface. Furthermore, the block resting on the sand surface was not fully disrupted even though a block suspended in space would be catastrophically disrupted at this level of impact energy. As the surface area of the block touching the sand increases, the damage decreases. This observation supports disruption impact energy being passed to surrounding sand grains through numerous contact points. Thus, the energy carried away from the first-contact grain to its neighbors would be affected by the number of contact points. For the case of coarse-grained targets investigated in this study, the fragments may play the role of the fine sand in the experiments by \citet{durda2011} and carry the momentum and energy efficiently to neighboring grains.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=120mm]{/Users/eri/Dropbox/2016icarus/Figures/fig18.eps}
+	\caption{Schematic images of the transition from armoring regimes to gravity regime as impact energy increases. Armoring regime \II: When impact energy is comparable to the disruption energy of a target grain, the crater size is dominated by material strength (left). Armoring regime I: When impactor size is comparable to target grain size and the impact energy is larger than disruption energy of a target grain, the crater size is dominated by grain disruption strength (middle, magenta line in Figure \ref{Itokawa-crater}(a)). Gravity regime: When the impact energy is sufficiently larger than the disruption energy of a target grain, the crater size is dominated by momentum transfer like granular material (right, blue line in Figure \ref{Itokawa-crater}(1)).}
+	\label{schema-energy}
+	\centering
+\end{figure}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Planetary implications}\label{sec:implication}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this section, we discuss a couple of important implications of our newly obtained scaling law for impact cratering on coarse-grained targets. First, we discuss the crater retention age on Itokawa in comparison with geochemical age measurements of Itokawa samples returned by the Hayabusa spacecraft to Earth. Then we further discuss the mass loss rate for small rubble-pile asteroids, such as Itokawa, Ryugu, and Bennu, and implications for long-term evolution of the main asteroid belt.
+
+%------------------------------------------------------------%
+ \subsection{Implications for Itokawa crater retention age}\label{sec:itokawa-age}
+%------------------------------------------------------------%
+It is rather natural to assume that the crater retention age on an asteroid surface covered with large boulders with significant strength can be estimated using strength crater scaling. \citet{michel2009} showed that strength scalings with both basalt and soft rock strength values would yield relatively old surface ages (75 Myr -- 1 Gyr) for Itokawa if the crater candidates found by \citet{hirata2009} are of impact origin.
+ However, Itokawa is most likely a rubble-pile asteroid, weakly gathered by gravity and cohesion.
+ Our experiments suggest that the crater size was much greater than the crater size on a monolithic body, although the armoring may reduce crater size significantly depending on the disruption energy ratio $\xi$.
+ Whenever the impact energy is large enough to catastrophically disrupt the first-contact boulder, our results would predict that crater size on Itokawa would be in-between the gravity scaling for sand and the soft rock strength scaling. This suggests that the real Itokawa surface age would be much younger than values based on the classical strength scaling.
+As the crater retention age estimate may be influenced greatly by the crater scaling law, we revisit the Itokawa crater retention age estimate using our armoring crater scaling law based on the distribution of the larger crater-like features $>100$ m, which are the largest features on Itokawa.
+
+For Itokawa, we used the bulk density of Itokawa $\rho_a=1900$ kg/m$^3$ \citep{fujiwara2006}, typical impact velocity $U=5.3$ km/s in the main belt \citep{bottke1994}, and the surface gravity $g=7.5\times 10^{-5}$m/s$^2$ \citep{tancredi2015} of Itokawa for our calculation.
+Note that an impactor $\sim 1.8$ m in diameter can catastrophically disrupt a 40 m-diameter boulder, the maximum diameter for Itokawa boulders, at the assumed impact velocity.
+In other words, impactors larger than 1.8 m could always form topographically well-defined craters.
+When we see a crater on Itokawa, it indicates that a collision $\xi>1$ happened, because it would be difficult to discern a crater with $\xi<1$.
+
+The probability of collisions on an asteroid is
+\begin{align}
+	p_\text{coll}&=\frac{P_I(D_t+D_p)^2N_\text{pairs}}{4 N_\text{total}}, \notag\\
+	&=\frac{P_I(D_t+D_p)^2N_pN_t}{4(N_t+N_p)},
+\end{align}
+where $N_\text{pairs}$ is the number of target--projectile pairs and $N_\text{total}$ is the total number of targets and projectiles.
+The intrinsic collision probability $P_I$ for MBA--MBA collisions, that for NEA--NEA collisions, and that for NEA--MBA collisions are $2.86\times 10^{-18}$ km$^{-2}$ yr$^{-1}$, $15.3\times 10^{-18}$ km$^{-2}$ yr$^{-1}$ and $2.18\times 10^{-18}$ km$^{-2}$ yr$^{-1}$, respectively \citep{bottke1994}.
+The number of target--projectile pairs of NEOs is much smaller than MBAs because the number of NEAs is $1/1000$ times that of MBAs.
+Although Itokawa is in a near-Earth orbit now, where the intrinsic collisional probability and the impact velocity are higher than in the main belt,
+the crater production rate is $\sim 50$ times lower on an NEA than on an MBA because of the much higher number density of potential projectiles in the main belt.
+In other words, it takes $\sim 50$ times longer to form the same crater distribution in a near-Earth orbit.
+Because of this low crater production rate in a near-Earth orbit, cratering in a near-Earth orbit may not account for the observed crater population on Itokawa.
+Thus, the cratering history on Itokawa possibly reflects the main-belt impacts because of the short dynamical lifetime (i.e., several million years) in the near-Earth orbits.
+Assuming that Itokawa is a spherical body with $D_\text{Ito}=0.326$km, the frequency $p_\text{Ito}(D_p)$ that the projectile with $D_p$ in diameter hits Itokawa is
+\begin{equation}
+	p_\text{Ito}(D_p) = P_I\frac{(D_\text{Ito}+D_p)^2}{4}n_a(D_p),
+\end{equation}
+where $n_a(D)$ is the number of MBAs with diameter $D$, or $n_a(D)=-{\rm d} N_a(>D)/{\rm d} D$ by definition.
+Then the possibility $\mathcal{P}_\text{Ito}(>D_p)$ that a projectile larger than $D_p$ in diameter hits Itokawa is,
+\begin{align}
+	\mathcal{P}_\text{Ito}(>D_p) &= P_I\frac{(D_\text{Ito}+D_p)^2}{4}N_a(>D_p) \notag\\
+	&\sim \frac{P_I D_\text{Ito}^2N_a(>D_p)}{4},\qquad (\because\quad D_\text{Ito} \gg D_p).
+\end{align}
+Based on numerical simulation, \citet{obrien2005} estimated the size distribution of small MBAs, because they are too small and faint to be observed directly from the Earth;
+\begin{equation}
+	N_a(>D)=N_0D^{\alpha}=1.85\times 10^{13}D^{-2.91},\qquad (1<D<100\text{m}).
+\end{equation}
+Thus, the average time interval that an impactor larger than $D_p$ hits Itokawa can be calculated as $\Delta \tau =1/\mathcal{P}_\text{Ito}(>D_p)$;
+\begin{equation}
+	\Delta \tau(>D_p) = \frac{4}{P_ID_\text{Ito}^2N_0 D_p^{\alpha}}.
+\end{equation}
+Here, impactor size $D_p$ can be estimated from observed crater size using the non-linear relationship by eq. \eqref{new-pi} (Figure \ref{Itokawa-crater}).
+It is noted that the age estimate from crater distribution is very sensitive to the impactor distribution and would be subject to future revisions in the size distribution of asteroids. However, the framework we propose here for crater retention age estimate for coarse-grained surfaces will change due to such revision.
+
+\subsubsection{Population of large circular depressions}
+We take the characteristic boulder size of 2 m because $P(>2 \text{m})\sim 0.5$ with the SFD condition of boulders on Itokawa (\ref{boulder-dist}), which means the probability for impactors to hit surface boulders larger than 2 m is approximately 50 \% on Itokawa when $D_\text{min} \sim 0.1$ m.
+Assuming for simplicity in calculation that the Itokawa surface is covered with boulders uniformly with the characteristic size $\sim2$ m, we obtain the crater efficiency from eq.\eqref{new-pi}.
+For such a surface condition, impacts that would form 100-m-diameter craters would have $\xi$ much greater than unity, ensuring the applicability of eq. \eqref{new-pi}.
+
+Larger craters could be retained for a longer time; smaller ones being much more subject to modification and obliteration processes, such as seismic shaking \citep[i.e.,][]{michel2009}.
+Thus, larger craters would be a more reliable measure for crater retention age on small asteroids, such as Itokawa.
+When such obliteration processes are not taken into account, the obtained crater retention age would give a lower estimate for the asteroid surface age.
+This age is still important because crater obliteration processes on small asteroids have not been quantitatively assessed yet.
+On the Itokawa surface, five largest circular depressions with $>100$ m in diameter were observed \citep{hirata2009}.
+Because these circular depressions exhibit a number of the characteristics of impact craters, we assume that they are of impact origin in the following discussion.
+A crater $\sim 100$ m in rim-diameter would require a projectile diameter $D_p\sim 1.7$ m, which corresponds to $\Delta \tau (>100 \rm{m})\sim 3.3$ Myr.
+Assuming that the possibility of meteorite impacts can be expressed with a Poisson distribution, we can estimate the error due to statistical fluctuation associated with a small number (i.e., five). We could estimate the posterior probability distribution function based on Bayesian statistics assuming that the prior probability distribution function of how many impact events would occur is uniform (i.e., constant) and independent of the number of impact events.
+This assumption on the probability is reasonable because there is no observational bias to observe an asteroid based on the number of craters on its surface.
+When five craters are observed, the average impact frequency for the period when the observed five craters were formed is between three to ten with 90\% confidence.
+Thus, the time to accumulate five such large impact craters without any crater obliteration process is estimated to be 10 -- 33 Myr (90\% confidence).
+
+If these five observed craters were formed in the near-Earth orbit, it would have taken more than 500 Myr due to the much lower probability for encounters with other asteroids in the near-Earth orbit as discussed above.
+However, \citet{michel2005} calculated the lifetime in the current orbits and found that the median lifetime is 8.3 Myr and that only 4 out of 39 cases could survive more than 100 Myr.
+Thus, the possibility that all the five 100 m-sized craters were formed in the near-Earth region is less than 10\%.
+Consequently, it is highly likely that a large fraction of the large crater-like depressions were formed in the main belt and this crater retention age may reflect the resurfacing time of the asteroid in the main belt.
+
+%------------------------------------------------------------%
+ \subsubsection{The depletion of small circular depressions on Itokawa} 
+%------------------------------------------------------------%
+The cumulative number density of large circular depressions ($\gtrsim 100$ m) on Itokawa is comparable to the saturation crater density of the Moon. However, the cumulative size distribution of small circular depressions on Itokawa has a slope significantly shallower than that of small craters on the Moon. Figure \ref{Itokawa-crater} shows that all the circular depressions on Itokawa are influenced by the armoring effect. The slope of the new scaling law changes around a diameter of $\sim 30$ m; crater population from 30 m to 100 m in diameter has a steeper slope than that of several meters to 30 m. When resulting crater diameter increases steeply as a function of projectile diameter, the cumulative distribution of formed craters is shallower.  Thus, if the armoring effect controls the crater size distribution on Itokawa dominantly, the number distribution of small circular depressions ($< 30$ m) should have a steeper slope than for larger ones. However, the observed number density of small circular depressions has a shallower slope than that for larger ones. This observation indicates that the depletion of small crater candidates on Itokawa is not due to the armoring effect, suggesting that the number distribution of small craters is dominantly controlled by obliteration processes, such as regolith convection and migration. Thus, because the number density of large craters ($>100$ m) coincides with the saturation level of the Moon, the crater retention age based on crater counting may be a low estimate for the actual surface age. If the crater number density is heavily saturated, the crater R-plot distribution on Itokawa should have a plateau around the saturation level of number density. However, there is no crater in the bin larger than 200 m \citep{hirata2009}. Moreover, the size distribution of craters $>100$ m has a size distribution similar to the crater production function; $N(>D)\propto D^{-2.5\sim -3.5}$. Thus, the degree of crater saturation is probably not very large in large craters. 
+
+%------------------------------------------------------------%
+\subsection{Comparison with other Itokawa age estimates}\label{sec:itokawa-sample}
+%------------------------------------------------------------%
+Itokawa is the only planetary body from which the samples with geologic context have been returned other than the Moon. These samples have allowed a variety of geochronological analyses for surface exposure ages of Itokawa. Thus, it is very important to compare the geochemical ages with our crater retention age. Some of the ages exhibit values similar to our crater retention age, which reflects the resurfacing timescale for $\sim$10 m of depth. It is not clear, however, what this coincidence actually means. In this section, we review the ages based on both samples and remote-sensing data and discuss implications for surface evolution of Itokawa.
+
+For example, our crater retention age estimate (10 -- 33 Myr) based on the new scaling law for coarse grains is much younger than the previous age estimate (75 Myr -- 1 Gyr) based on the strength scalings for rigid bodies \citep{michel2009}. These different estimates can be examined with the results from the geochemical analyses of samples returned from Itokawa, such as spectral ages, cosmic ray exposure (CRE) ages, rim thickness ages, Ne-implantation ages, and solar flare track distribution ages. The various ages of Itokawa are summarized in Figure \ref{itokawa-ages} as a function of characteristic depth. For example, the CRE ages, which reflect the residence time at several meters deep, were $<$ 8 -- 66 Myr \citep{nagao2011} and $\sim$1.5 Myr for Ne \citep{meier2014}, and $>$3 -- 4 Myr for Be \citep{nishiizumi2015}, and the visible-near-infrared (VNIR) spectral ages, which reflect the exposure time of the uppermost surface, were $<$10 Myr \citep{koga2014} and $\sim$2 -- 8 Myr \citep{bonal2015}.
+
+First, it should be noted that the spectral ages and the CRE ages are estimated under the near-Earth condition, where the solar wind flux is about 4 times that in the main belt. Depending on the ratio of residence time in the main belt to that in the near-Earth region, the absolute value of those ages would change, but the ages would change proportionally to each other. Thus, if the ages are estimated under the main belt condition, the ages would be up to about 4 times larger: the spectral ages are 2 -- 32 Myr \citep{bonal2015} and $<$40 Myr \citep{koga2014}, and the CRE ages are 3 -- 32 Myr \citep{nagao2011} and 1.5 -- 6 Myr \citep{meier2014}. In contrast, crater age and boulder age have an opposing relationship to the residence time ratio in the main belt to that in the near-Earth region. If the residence time in the main belt were longer, both crater retention age and boulder distribution age would become shorter and spectral age and CRE age would become longer.
+
+The CRE ages are the residence time for regolith particles in the top several meters of material. These ages may reflect similar phenomena to what our crater retention age may represent ($\sim$10 m). Moreover, the “boulder exposure age” is also an impact-induced age and is expected to have va alue similar to the crater retention age. The boulder exposure age can be estimated from the boulder size distribution on the surface of Itokawa. \citet{basilevsky2014} estimated it as 5 -- 75 Myr based on the impact disruption probability of meter-size surface boulders. These ages are consistent with our crater retention ages, which also reflect the resurfacing age information of $\sim$10 m of depth. This will also help us cross-examine the accuracy of our crater scaling law on coarse-grained targets. Such agreement supports that the crater retention age for Itokawa obtained in this study is not much lower than the true value.
+
+Theoretical calculations have suggested that asteroids become smaller through both catastrophic disruption of the parent body and subsequent impacts: a collision cascade. Dynamical lifetimes are shorter for smaller asteroids. The crater resurfacing timescale for the upper $\sim$10 m layer, which is estimated from craters $>$ 100 m, has important implications for the collisional history of Itokawa. The fact that the crater retention age is estimated based on a strength scaling by \citet{michel2009} overlaps with the Ar degassing age by \citet{park2015} is possibly due to a catastrophic breakup of the parent body. The Ar degassing age may lead one to speculate that the old crater retention age would reflect the catastrophic disruption of the parent body. However, our crater retention age based on the new scaling law for coarse-grained targets, which is a more realistic conditions for the rubble pile asteroid Itokawa, may reflect a much more recent event on Itokawa in the main belt long after catastrophic disruption of a rigid parent body. Such subsequent disruption and/or global resurfacing event after the initial breakup from the parent body is not surprising, considering its short collisional lifetime due to its small size \citep[e.g.,][]{obrien2005}. Another candidate mechanism for global resurfacing is the YORP effect \citep{bottke2006}, which was predicted by \citet{scheeres2008, breiter2009}due to the asymmetrical shape of Itokawa. Recently \citet{lowry2014} observed the acceleration of spin rate of Itokawa $(3.54\pm0.38)\times10^{-8}$ rad day$^2$. Although the predictions were deceleration, absolute values of acceleration and deceleration were on the same order. Because small cohesion of small rubble-piles could retain the short spin periods $\sim$0.2--2 hr for sub-km asteroids \citet{sanchez2014}, the time scale of YORP-cycle based on the observation of Itokawa $\sim$ 5--60 Myr is comparable to our crater retention age. 
+
+Another important characteristic seen among the different ages shown in Figure \ref{itokawa-ages} is a large gap among the uppermost layer ages. Long spectral ages $\sim 10^6$--$10^7$ Myr contrast with very short sample ages based on rim thickness and Ne implantation $\sim 10^2$--$10^4$ yr. It is important to understand such a large discrepancy in surface ages. First, there are two spectral ages; one is the average spectral age from remote sensing data \citep{koga2014} and the other is the spectral age of individual regolith grains obtained by Hayabusa \citep{bonal2015}. Their ages, $<$10 Myr and $\sim$2--8 Myr, are consistent with each other. However, the spectral variation of ordinary chondritic material is estimated based on experiments by \citet{strazzulla2005}, which consider only Ar in the solar wind. A more recent study, \citet{loeffler2009}, showed that He ions could be more effective for space weathering because of large flux, and would make the space weathering of the olivine sample ($<$45 $\mu$m) saturated in $\sim$13,000 yr which is much faster than the time scale of space weathering by Ar ions $\sim$ 1.3 Myr. Because the spectra of both Itokawa particles and remote sensing data have not been saturated yet, the exposure time of the uppermost grains, i.e., microscopic exposure age, would be 10 times shorter when the effective He ion irradiation is taken into account. Thus, the spectral age of individual grains may be of the order of $10^3$ yrs. On the other hand, using the same method as \citet{bonal2015}, \citet{brunetto2006b} estimated the spectral age of the Karin family as $\sim$2 Myr. This age is consistent with the possible disruption age of the parent body of the Karin family estimated based on the orbital distribution and the N-body simulation by \citet{nesvorny2002}. The ages estimated based on the heavy ion irradiation experiment \citep{strazzulla2005} would be apparent ages (i.e., macroscopic exposure ages) including partial rejuvenation of the asteroid surface by granular convection or regolith disruption. Thus, the spectral ages of Itokawa $\sim$ 1--10 Myr \citep{koga2014,bonal2015} which are estimated based on the experimental result by \citet{strazzulla2005}, may also indicate the global apparent age including rejuvenation due to surface gardening. Thus, the effective thickness of the layer that the “macroscopic age” represents would be much greater than the grain diameters. Although it is difficult to accurately estimate this effective thickness, theoretical modeling and surface observations suggest an order of cm to meters \citep{tancredi2012, yamada2016}.
+
+Uppermost surface ages have also been estimated based on solar wind damaged rim thickness and Ne deposition of sample particles. The thickness of the rim created by solar wind of olivine grains is estimated to saturate in $\sim 10^4$ yr and reach 100 nm thick \citep{keller2016}. However, the thickness of the solar-wind-damaged rim of Itokawa samples is $\sim$ 60--70 nm. Thus, the exposure ages of samples are several thousand years \citep{berger2015}. Exposure times for different samples estimated based on measurements of deposited Ne are 150, 410, and 550 years; ignoring the erosion of grain surfaces and backscatter effect of Ne ions, they give lower limits. However, the actual irradiation ages were about several times these ages \citep{nagao2011}; it is very unlikely that the rim thickness ages are much longer than several thousand years.
+
+Thus, these very different ages ($10^6$--$10^7$ yr and $10^2$--$10^4$ yr) of the uppermost layer may reflect the different timescales of the Itokawa surface layer: a macroscopic age and a microscopic age, respectively. More specifically, the microscopic age ($10^2$--$10^4$ yr) is the exposure age of upper most grains. This short exposure age indicates the high mobility of regolith of Itokawa, for example migration and convection of regolith \citep[e.g.,][]{miyamoto2007}. Moreover, these sample ages indicate that the timescale of space weathering for individual particles would be much shorter than previously thought \citep{strazzulla2005}.
+
+In contrast, the macroscopic age ($10^6$--$10^7$ yr) is the apparent exposure age of a regolith layer, reflecting the complex processes of regolith, such as regolith gardening, granular convection, and grain fragmentation. Because our crater retention age is also a macroscopic age, it is more appropriate to compare directly with this age. The coincidence between the spectral age and our crater retention age suggests that a global several-to-10-meter-thickness resurfacing did not occur for $\sim$10 Myr. For a decisive conclusion, more analyses about the “apparent spectral age” are needed, particularly with irradiation by a realistic composition of ions for solar wind. 
+
+Finally, such analyses and interpretations of the surface processes of small asteroids would be also useful for landing site selection in ongoing asteroid sample-return missions, such as Hayabusa2 and OSIRIS-REx. If Ryugu and Bennu are covered with coarse grains as thermal inertia observations suggest \citep{hasegawa2008, emery2014,mueller2016}, our new scaling law eq.\eqref{new-pi} should be applicable to these asteroids. 
+
+\begin{figure}[htbp]
+	\begin{center}
+	\includegraphics[width=150mm]{/Users/eri/Dropbox/2016icarus/Figures/fig19_new.pdf}
+	\caption{(a) Crater diameter on Itokawa predicted from the new scaling law with the target grain diameter $D_t=2$ m and(b) that normalized by the classic gravity scaling. Black dashed line is the classic $\pi$ gravity scaling \citep[e.g.][]{holsapple1993} for fine sand on Itokawa and gray dashed line is the classic $\pi$ strength scaling for soft rock \citep{holsapple1993}. Solid curves are new scalings proposed in this study; the complete new scaling eq.\eqref{new-pi} (red), new gravity scaling for Itokawa (blue) and new disruption strength scaling for Itokawa (magenta). The curve for the new gravity scaling approaches fine-sand gravity scaling as projectile diameter increases. Note that the solid black line indicates the disruption limit of one grain ($\xi=1$). When the projectile size is smaller than the limit, the crater size might follow the classic strength scalings. A small crater may form on the target grain. }
+	\label{Itokawa-crater}
+	\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=120mm]{/Users/eri/Dropbox/2016icarus/Figures/fig20.eps}
+	\caption{Comparison among Itokawa surface ages estimated from analyses of returned samples and the remote-sensing data \citep{obrien2005, michel2009, nagao2011, basilevsky2014, koga2014, meier2014, noguchi2014, berger2015, bonal2015, nishiizumi2015, park2015}. The solid lines indicate original literature values based on near-earth orbits. Dashed-lines indicate ages recalculated with a reduced solar wind flux in the main belt; 1/4 that at the current near-Earth orbit. The age estimates with asterisks may be “macroscopic” surface ages and may reflect surface rejuvenation due to granular convection and regolith grain disruption. Thus, the effective thickness of the layers that these ages with asterisks represent may be much greater than the grain diameter. See the main text for a detailed discussion. }
+	\label{itokawa-ages}
+	\centering
+\end{figure}
+
+
+
+%------------------------------------------------------------%
+ \subsection{Implications for dynamical evolution of the asteroid main belt}
+%------------------------------------------------------------%
+The size frequency distribution (SFD) is an important factor that controls mass flux induced by the radial drift of asteroids through the Yarkovsky effect. Such drift may have played an important role in transport of volatiles, organic compounds, and water to the inner solar system. The SFD of MBAs have evolved by innumerable collisions. Excavation and disruption due to mutual collisions grinds asteroids to smaller sizes. A recent theoretical calculation showed that this collisional cascade is controlled mainly by cratering (small impacts) rather than catastrophic disruption (large impacts) on collisions \citep{kobayashi2010}. This suggests that the power-law index of SFD could be influenced greatly by mass-loss of asteroids due to cratering. Thus, the cratering efficiency on small asteroids plays an important role in controlling the size frequency distribution of smaller asteroids. Furthermore, smaller asteroids become projectiles to larger asteroids and terrestrial planets and control the impact rate to them.
+
+Our experiments suggest that the large craters ($D_c>100$ m) on Itokawa are influenced by the disruption strength of surface grains but that the effect was small enough to form craters several times larger than on monolithic rock targets. The material disruption strength starts to influence the crater size below $\sim 5$ m under such surface conditions. This can help the drastic depletion in small crater population $< 10$ m on Itokawa. In other words, Itokawa may be protected well by the armoring effect for crater sizes $<10$ m.
+
+However, Itokawa is not very well protected by the armoring effect for larger size impacts.
+This may actually have important implications for the mass-loss rate of such small rubble-pile bodies. The results of this study predict that impacts which create craters $>10$ m would generate ejecta mass as great as that predicted by the classic gravity scaling. So small rubble-pile asteroids can easily lose their mass due to small escape velocities. For example, the escape velocity of Itokawa is less than 1 m/s; any impact ejecta faster than 1 m/s would not come back to the body. Impact-excavated volume by small (a few meter) meteorites on rubble-piles may be larger than that on monolithic bodies by orders of magnitude. This leads to erosion rates for rubble piles that are orders of magnitude higher than that for the monolithic body estimated by \citet{kobayashi2010}. Thus, the SFD evolution of MBAs might be greatly influenced by the internal structure of asteroids. Effective impact-induced ``erosion'' by cratering suggests a high mass loss rate for small rubble-pile asteroids, which might contribute to eliminating small asteroids from the main belt and result in a shallower distribution of small asteroids $0.15 <D_a<10$ km \citep{yoshida2007, gladman2009}.
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \section{Conclusions}\label{sec:conclusion}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In order to understand the cratering mechanism on boulder-rich surfaces and to evaluate cratering efficiency, we conducted a series of impact experiments on coarse-grained targets with four kinds of material: pumice, basalt, soda glass, and sintered glass beads. We measured the diameters and topographic profiles of craters and found both the size ratio $\psi\equiv D_p/D_t$ of impactor to the target grain and the energy ratio $\xi\equiv \frac{1}{2}m_pU^2/Q_D^*m_t$ of impact energy to the disruption energy of a target grain are important for understanding cratering efficiency reduction, the so-called armoring effect. The way the armoring effect occurs could be classified into three regimes as a function of the energy and size ratios of impactors to targets: (1) gravity regime: $\psi>1$ or $\xi\gg 1$, (2) armoring regime I (reduced size crater): $\psi<1$ and $\xi\gtrsim 1$, (3) armoring regime \II\,(no apparent inter-grain crater): $\psi<1$ and $\xi<1$. We derived a new crater scaling law eq.\eqref{new-pi} for conditions (1) and (2). We found that crater diameters on coarse-grained targets would be at most approximately three times smaller than on sand targets when the asteroid surface is covered with 2 m blocks (Figure \ref{Itokawa-crater}).
+
+Impact cratering with the armoring effect comprises two stages: the disruption stage and the excavation stage. The grain disruption stage completes very rapidly upon impact. The subsequent excavation stage occurs after the disruption, and its flow field is similar to that for simple crater formation when the impact energy is sufficiently high. This observation suggests that the impactor/target size ratio and disruption strength affect only the fracture stage and that modification for the scaling parameters in the widely-used $\pi$ scaling \citep[e.g.,][]{holsapple1993} can make this scaling reproduce experimental data for coarse-grained targets over a wide range of impact velocities. We also found that the modified $\pi$ parameters can be calculated based on momentum conservation during the first contact between the impactor and the target grain.
+
+The cratering efficiency (i.e., $\pi_V^*$) for armored cratering is at least few times larger than the strength scaling for monolithic bodies whenever the impactor kinetic energy is higher than the disruption energy of the first-contact target grain (i.e., $\xi>1$). Note that an impactor at the average impact velocity in the main asteroid belt catastrophically disrupts a surface grain more than 20 times its own size due to hypervelocity impacts. Consequently, even if the surface grain size is as large as $\sim 1$  meter, the armoring effect may not be effective for large craters made by meter-size impactors, because a meter-size boulder could be disrupted easily by a cm-size impactor. In such cases, the crater size would be comparable to that predicted by the classic gravity scaling.
+
+The new scaling law for coarse-grained targets allows us to predict that the five 100-m diameter crater-like depressions on Itokawa may have been made over 10 -- 33 Myr of time, which is still much younger than the previously estimated age (75 Myr -- 1 Gyr) based on strength scalings \citep{michel2009}. The possibility of forming this number of 100 m-class craters in near-Earth orbit is very low ($<10$\%). The CRE ages of several to 10 Myr, which would reflect the age for the top several meters of thickness \citep{nagao2011, meier2014, nishiizumi2015}, are consistent with or slightly shorter values than our crater retention ages which reflect the age information of $\sim 10$ m deep. These lines of evidence strongly suggest that Itokawa may have experienced a global resurfacing event in the main belt in its recent history, a few tens of million years ago, long after a catastrophic disruption of its rigid parent body, perhaps $\sim 1.3$ Ga as suggested by the Ar-Ar age \citep{park2015}. Such a recent resurfacing age is consistent with a disruption event due to the YORP spin-up and spin-down cycle \citep{scheeres2008, lowry2014}, although other resurfacing mechanisms, such as a large impact(s), are also possible. The large difference in age between these two events may suggest that Itokawa has experienced an extensive resurfacing event(s) since a catastrophic disruption of its parent body. Our results are generally in agreement with theoretical predictions on collisional evolution of small asteroids. A simple calculation based on our new scaling law for coarse-grained surface indicates that mass loss from small rubble-pile asteroids such as Itokawa, Ryugu, and Bennu may be much larger than that for monolith bodies and rather close to a that of a strengthless body against medium to large impacts. This may contribute to the removal of small asteroids from the main belt through the Yarkovsky effect.
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgement}
+We thank Prof. M. Arakawa, Prof. A. Nakamura of Kobe University and Prof. T. Kadono of University of Occupational and Environmental Health, Japan for insights and fruitful discussions. We also thank Dr. S. Hasegawa, Dr. A. Suzuki, and Dr. T. Hirai from the Space Plasma Laboratory in ISAS/JAXA for their assistance in our experiments. Some of the research experiments were conducted with the Hypervelocity Impact Facility supported by JAXA inter-university research system.
+The research was supported by the Japan Society for the Promotion of Science (JSPS) KAKENHI (Grant Number 26247092, 15J06330, and 16H06719) and Core-to-Core program ``International Network of Planetary Sciences''.
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \appendix
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %------------------------------------------------------------%
+\section{Classic scaling law of impact process}\label{sec:piscaling}
+ %------------------------------------------------------------%
+When extrapolating from crater size data in laboratory scales to planet scales with different gravities and material conditions, scaling laws are needed.
+\citet{holsapple1987} proposed a point-source measure that determines the final outcome, the ``coupling parameter'':
+\begin{equation}
+	C=aU^\mu\rho_p^\nu,
+\end{equation}
+assuming measurement observable in the far field from the impactor with radius $a$, velocity $U$ and mass density $\rho_p$.
+They developed this relation to more generalized formulations based on the Buckingham $\pi$ theorem of dimensional analysis \citep{buckingham1914}.
+Starting from the crater volume $V_c$:
+\begin{equation}
+	V_c=f[aU^\mu\rho_p^\nu,\, \rho_t,\,Y,\, g], \label{pi-start-eq}
+\end{equation}
+where $\rho_t$ and $Y$ are the density and the strength of the bulk target and $g$ is the surface gravity, they derived set of for dimensionless, $\pi$ group parameters,
+\begin{equation}
+	\pi_V=K_1\left[\pi_2\pi_4^{-1/3}+\bar{\pi}_3^{(2+\mu)/2}\right]^{-3\mu/(2+\mu)}.\label{simple-pi}
+ \end{equation}
+\begin{align}
+	\pi_V&=\frac{\rho_t V_c}{m_p}, \label{piV}\\
+	\pi_2&=\frac{g}{U^2}\left(\frac{m_p}{\rho_p}\right)^{1/3}=3.22\left(\frac{ga}{U^2}\right),\\
+	\pi_3&=\frac{\bar{Y}}{\rho_tU^2}, \label{pi3}\\
+	\pi_4&=\frac{\rho_t}{\rho_p}.
+\end{align}
+The $\pi_V$ is called the cratering efficiency, where $m_p=(4/3)\pi a^3\rho_p$ is the projectile mass.
+The $\pi_2$ is called the gravity-scaled size, and $\pi_3$ is called the non-dimensional strength indicating a measure of the importance of target strength $Y$ in cratering event.
+ The parameters for geological materials are given in Table \ref{pi-params} from \citet{holsapple1993}.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Parameters for $\pi$ scaling \citep{holsapple1993}.}
+	\label{pi-params}
+	\small
+	\begin{tabular}{lccc}\hline
+	Material & $K_1$ & $\mu$ & $\bar{Y}$ [MPa]\\ \hline
+	Dry soil & 0.24 & 0.41 & 0.18 \\
+	Water & 2.3 & 0.55 & 0 \\
+	Soft rock & 0.20 & 0.55 & 7.6\\
+	Hard rock & 0.20 & 0.55 & 18\\ \hline
+	\end{tabular}
+	\centering
+\end{table}
+
+Using this scaling law, the craters on Itokawa and the Moon are estimated in Figure \ref{impactor-crater}.
+Crater size can be estimated from the strength scaling for small impacts and the gravity scaling for large impacts.
+The transition point from the strength scaling to the gravity scaling depends on the effective strength of the target material.
+The ``effective'' strength may include material tensile strength, friction, inter-locking resistance, and adhesion. Surface gravity even affects the ``effective'' strength through friction.
+Comparison between observations and theoretical calculations suggests that the cohesive strength of small asteroids is a few tens of Pa \citep{sanchez2014, rozitis2014}.
+If the effective strength of Itokawa was a few tens Pa, the transition crater diameter between strength-controlled to gravity-controlled regimes is smaller than 1 m.
+Thus, crater size $> 1$ m can be predicted well with the gravity scaling if the target is fine regolith.
+Note that the crater size on a rock target predicts a less than one-tenth crater size on sand with a small effective strength (1 kPa).
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=80mm]{Figures/fig21.eps}
+	\caption{Crater sizes on Itokawa and the Moon estimated from the classic $\pi$ scaling eq. \eqref{simple-pi}. Gravity-dominated scaling (solid), strength-dominated scaling for sand with $\bar{Y}=1 {\rm MPa},\, 1{\rm kPa},\, 1{\rm Pa}$ in order from the top (dashed) and strength scaling for continuum target with $\bar{Y}=18$ MPa corresponding to the strength of hard rock(one-dot). The cratering process in small impacts are controlled by material strength. As impact size increases, a transition occurs and a crater size follows the gravity scaling. The transition point from the strength scalings to the gravity scaling depends on the effective strength and gravity.}
+	\label{impactor-crater}
+	\centering
+\end{figure}
+
+ %------------------------------------------------------------%
+\section{Boulder distribution on Itokawa} \label{boulder-dist}
+%------------------------------------------------------------%
+The new scaling law is derived for a given size of target grains. However, real rubble-pile asteroids are covered with a variety of sizes of grains. In order to use our new scaling law for a target with grains of different sizes, one approach is to derive a characteristic size to represent the surface. In this section, we describe how we treat the size distribution and decide the characteristic size of boulders.
+
+Rocks and boulders on airless bodies often exhibit fractal size distributions; the cumulative size distributions are given by power laws, such as\begin{equation}
+	N_b(>D) \propto D^{\alpha}, \label{cdf}
+\end{equation}
+where $N_b(>D)$ is the number of boulders with a diameter greater than $D$.
+The same boulder size distribution can be described in an incremental size distribution as $n_b(D){\rm d} D =- {\rm d} N_b$.
+
+The power-law index $\alpha$ on Itokawa was first measured by \citet{saito2006} for boulder sizes down to 5 m as $-2.8$ where the maximum size dimension of a each boulder was used as its diameter.
+Subsequently, \citet{michikami2008} conducted a more detailed analysis and found that the power-index is $\alpha=-3.1\pm 0.1$.
+Further analyses conducted more recently by \citet{mazrouei2014} and \citet{tancredi2015} revealed that the power-law index may differ among different regions ranging from $-4.1$ to $-2.7$.
+
+\citet{tancredi2015} analyzed boulder size distributions for several regions with high-resolution images from 0.01 to 0.48 m/pix.
+Due to the limitation of resolutions, small particles could not be counted.
+\citet{tancredi2015} used a maximum-likelihood fitting method with goodness-of-fit tests based on the Kolmogorov-Smirnov statistic to determine the power-law index and the usable size range of fitting, while the previous studies fitted the exponents by eye.
+They found that the cut-off sizes for the power laws for boulders are $\sim 2$ m for the rough terrain and $0.2 - 0.6$ m for the smooth terrain, which are significantly larger than the cut-off diameter due to artificial incompleteness bias from the limitation in resolution.
+
+Random packing simulations by \citet{tancredi2015} suggest that the surface size distribution might be a good representative for the interior size distribution (App. A).
+The total volume $\theta_{\rm total}$ of boulders that follow the size distribution \eqref{cdf} is given by
+\begin{align}
+	\theta_\text{total}&=\int_{D_{\rm min}}^{D_{\rm max}} \frac{\pi}{6} D^3 n_b(D) {\rm d} D \notag \\
+%	&=\int_{d_{\rm min}}^{d_{\rm max}} \frac{\pi \alpha C}{6} d^{2+\alpha} \d d \notag \\
+	&=\begin{cases} -\dfrac{\pi \alpha C}{6(3+\alpha)} (D_{\rm max}^{3+\alpha}-D_{\rm min}^{3+\alpha})& (\alpha\neq -3) \medskip\\
+	\dfrac{\pi C}{2}\ln\left(\dfrac{D_{\rm max}}{D_{\rm min}}\right) & (\alpha=-3) \end{cases} .
+\end{align}
+The characteristic size of boulders could be defined as a volume median diameter $\bar{D}$ which refers to the midpoint boulder size, where one half of the volume is boulders smaller than this size and the other half of the volume is boulders larger than this size.
+\begin{equation}
+	\frac{\ln (D_{\rm max})-\ln (\bar{D})}{\ln (D_{\rm max})-\ln (D_{\rm min})}=0.5\qquad (\alpha=-3).
+\end{equation}
+Here, we assume that the power-index $\alpha =-3$ and that the cut-off sizes are $D_\text{min}=0.1$ m, $D_\text{max}=40$ m for the rough terrains on Itokawa.
+The volume fraction of boulders larger than $D_p$ is
+\begin{equation}
+	P(>D_p) = \frac{\theta(>D_p)}{\theta_\text{total}}=\frac{\ln (D_{\rm max})-\ln (D_p)}{\ln (D_{\rm max})-\ln (D_{\rm min})}. \label{P}
+\end{equation}
+Figure \ref{graph-P} shows the volume fractions for different boulder minimum cut-off sizes.
+The probability that an impactor will hit a surface grain larger than $\sim2$ m is greater than 50\% for $D_{\rm min}=0.1$ m.
+Moreover, when we assume the minimum cut-off size 2 m for the rough terrain, an impactor hit a surface grain larger than 9 m with the probability of 50\%.
+Thus, it is not rare to achieve the condition $D_p<D_t$, because small impacts occur very often.
+Under such a condition, the first-contact grain size would be larger than the impactor size and a significant armoring effect may occur.
+\begin{figure}[htbp]
+	\begin{center}
+	\includegraphics[width=7cm]{/Users/eri/Dropbox/2016icarus/Figures/fig22.eps}
+	\caption{Volume occupation ratio of target grains larger than the impactor size $d$ for different minimum cut-off sizes: eq.\eqref{P}.}
+	\label{graph-P}
+	\end{center}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{References}
+\bibliography{alphabet}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
